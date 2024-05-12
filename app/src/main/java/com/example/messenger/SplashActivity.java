@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.messenger.utils.firebaseUtil;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -16,7 +18,11 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this,LoginPhoneNumberActivity.class));
+                if(firebaseUtil.isLoggedIn()){
+                    startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                }else{
+                    startActivity(new Intent(SplashActivity.this,LoginPhoneNumberActivity.class));
+                }
                 finish();
 
             }
